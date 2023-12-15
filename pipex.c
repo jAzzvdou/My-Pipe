@@ -6,43 +6,68 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 16:51:04 by jazevedo          #+#    #+#             */
-/*   Updated: 2023/12/12 16:06:39 by jazevedo         ###   ########.fr       */
+/*   Updated: 2023/12/15 16:29:08 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-pid_t	exec(char **envp, t_command command)
+static void	error_soft(char *e)
 {
-	pid_t	pid;
-	int	pipe_fd[2];
-
-	pipe(pipe_fd);
-	pid = fork();
-	if (pid == -1)
-		return (-1);
-	if else (pid == 0)
-	{
-		dup2(0, command->input);
-		close(command->input);
-		dup2(1, command->output);
-		close(command->output);
-		execve(command->args[0], command->args, envp);
-		ft_printf("se fudeu deu errado otario");
-		return (0);
-	}
+	write(2, e, ft_strlen(e));
+	exit(1);
 }
 
-executor()
+static void	error(char *e)
 {
+	perror(e);
+	exit (1);
+}
+
+static void	closer(t_info info)
+{
+	close(info->tude[0]);
+	close(info->tube[1]);
+}
+
+static char	*pathfinder(char **envp)
+{
+	while (*envp != NULL && ft_strncmp("PATH", *envp, 4))
+		envp++;
+	if (*envp == NULL)
+		error_soft(".ERROR: Envp.\n");
+	return (envp + 5);
 }
 
 int	main(int argc, char **argv, char **envp)
 {
-	if (argc == 5)
-		executor(argc, argvs);
-	else
-		ft_printf("ERROR! USAGE: ./pipex file1 cmd1 cmd2 file2");
+	t_info	info;
+
+	if (argc != 5)
+		error_soft(".Error: Invalid number of arguments.\n");
+	info.infile = open(argv[1], O_RDONLY);
+	if (info.infile < 0)
+		error(".ERROR: Infile.\n");
+	info.outfile = open(argv[argc - 1], O_TRUNC | O_CREAT | O_RDWR);
+	if (info.outfile < 0)
+		error(".ERROR: Outfile.\n");
+	if (pipe(info.tube) < 0)
+		error(".ERROR: tube.\n");
+	info.path = pathfinder(envp);
+	info.commands_path = ft_split(info.path, ':');
+	info.pid_one = fork();
+	if (info.pid_one == 0)
+		pid_one_son(info, argv, envp);
+	info.pid_two = fork();
+	if (info.pid_two == 0)
+		pid_two_son(info, argv, envp);
+	closer(&info);
+	waitpid(info.pid_one, NULL, 0);
+	waitpid(info.pid_two, NULL, 0);
+	cleaner(&info);
 	return (0);
 }
 
+SPLIT
+STRLEN
+STRNCMP
