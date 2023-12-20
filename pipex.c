@@ -6,7 +6,7 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 16:51:04 by jazevedo          #+#    #+#             */
-/*   Updated: 2023/12/20 14:38:17 by jazevedo         ###   ########.fr       */
+/*   Updated: 2023/12/20 17:09:14 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	main(int argc, char **argv, char **envp)
 	if (info.p1 == 0)
 		p1_child(info, argv, envp);
 	info.p2 = fork();
-	if (info.p2 == 0);
+	if (info.p2 == 0)
 		p2_child(info, argv, envp);
 	closer(&info);
 	waitpid(info.p1, NULL, 0);

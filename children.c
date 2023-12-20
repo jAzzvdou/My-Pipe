@@ -6,7 +6,7 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 16:24:44 by jazevedo          #+#    #+#             */
-/*   Updated: 2023/12/20 16:42:03 by jazevedo         ###   ########.fr       */
+/*   Updated: 2023/12/20 17:08:55 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,21 @@ void	cleaner_child(t_info *info)
 	int	i;
 
 	i = -1;
-	while(info->cmds[++i])
+	while (info->cmds[++i])
 		free(info->cmds[i]);
 	free(info->cmds);
 	free(info->cmd);
 }
 
+/*
 char	*catch_cmd(char **path, char *cmd)
 {
 	char	*temp;
 	char	*com;
 
 	while (*path)
-	{
+}
+*/
 
 void	p1_child(t_info info, char **argv, char **envp)
 {
