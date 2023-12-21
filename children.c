@@ -6,7 +6,7 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 16:24:44 by jazevedo          #+#    #+#             */
-/*   Updated: 2023/12/20 17:08:55 by jazevedo         ###   ########.fr       */
+/*   Updated: 2023/12/21 11:26:21 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,25 @@ void	cleaner_child(t_info *info)
 	free(info->cmd);
 }
 
-/*
 char	*catch_cmd(char **path, char *cmd)
 {
 	char	*temp;
-	char	*com;
+	char	*the_cmd;
 
 	while (*path)
+	{
+		if (access(cmd, 0) == 0)
+			return (cmd);
+		temp = ft_strjoin(*path, '/')
+		the_cmd = ft_strjoin(temp, cmd);
+		free(temp);
+		if (access(the_cmd, 0) == 0)
+			return (the_cmd);
+		free(the_cmd);
+		path++;
+	}
+	return (NULL);
 }
-*/
 
 void	p1_child(t_info info, char **argv, char **envp)
 {
