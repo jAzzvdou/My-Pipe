@@ -6,7 +6,7 @@
 #    By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/21 13:27:57 by jazevedo          #+#    #+#              #
-#    Updated: 2023/12/21 13:35:07 by jazevedo         ###   ########.fr        #
+#    Updated: 2023/12/21 14:47:59 by jazevedo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME	=	pipex.a
 
 SRCS	=	pipex.c    \
 		children.c \
-		cleaners   \
+		cleaners.c   \
 		errors.c   \
 		utils.c    \
 		utils2.c   \
