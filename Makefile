@@ -6,11 +6,11 @@
 #    By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/21 13:27:57 by jazevedo          #+#    #+#              #
-#    Updated: 2023/12/21 15:37:32 by jazevedo         ###   ########.fr        #
+#    Updated: 2023/12/21 16:19:05 by jazevedo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	=	pipex.a
+NAME	=	pipex
 
 SRCS	=	pipex.c    \
 		children.c \

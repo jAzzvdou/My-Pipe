@@ -6,7 +6,7 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 13:22:16 by jazevedo          #+#    #+#             */
-/*   Updated: 2023/12/21 14:49:17 by jazevedo         ###   ########.fr       */
+/*   Updated: 2023/12/21 16:28:08 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@
 # include <fcntl.h>
 # include <sys/wait.h>
 # include <stdio.h>
+# include <sys/types.h>
+# include <sys/uio.h>
+# include <string.h>
 
 typedef struct s_info
 {
