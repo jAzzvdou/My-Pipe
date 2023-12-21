@@ -6,13 +6,13 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 16:51:04 by jazevedo          #+#    #+#             */
-/*   Updated: 2023/12/20 17:09:14 by jazevedo         ###   ########.fr       */
+/*   Updated: 2023/12/21 15:40:19 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-static void	closer(t_info info)
+static void	closer(t_info *info)
 {
 	close(info->pipes[0]);
 	close(info->pipes[1]);
@@ -24,7 +24,7 @@ static char	*pathfinder(char **envp)
 		envp++;
 	if (*envp == NULL)
 		error_write(".ERROR: Envp.\n");
-	return (envp + 5);
+	return (*envp + 5);
 }
 
 int	main(int argc, char **argv, char **envp)

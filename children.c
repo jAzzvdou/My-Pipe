@@ -6,7 +6,7 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 16:24:44 by jazevedo          #+#    #+#             */
-/*   Updated: 2023/12/21 14:26:55 by jazevedo         ###   ########.fr       */
+/*   Updated: 2023/12/21 15:41:04 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static char	*catch_cmd(char **path, char *cmd)
 	{
 		if (access(cmd, 0) == 0)
 			return (cmd);
-		temp = ft_strjoin(*path, '/');
+		temp = ft_strjoin(*path, "/");
 		the_cmd = ft_strjoin(temp, cmd);
 		free(temp);
 		if (access(the_cmd, 0) == 0)
