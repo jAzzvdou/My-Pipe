@@ -6,7 +6,7 @@
 #    By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/21 13:27:57 by jazevedo          #+#    #+#              #
-#    Updated: 2023/12/21 14:47:59 by jazevedo         ###   ########.fr        #
+#    Updated: 2023/12/21 14:51:55 by jazevedo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,14 +14,14 @@ NAME	=	pipex.a
 
 SRCS	=	pipex.c    \
 		children.c \
-		cleaners.c   \
+		cleaners.c \
 		errors.c   \
 		utils.c    \
 		utils2.c   \
 
 SRCS_BONUS	=
 
-OBJS	=	$(SRCS:c.=o)
+OBJS	=	$(SRCS:c=.o)
 
 OBJS_BONUS	=	$(SRCS_BONUS:.c=.o)
 
