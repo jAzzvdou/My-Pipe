@@ -37,6 +37,35 @@ char	*env_path(char **envp)
 	return (paths);
 }
 
+char	*command_path(char *cmd, char **paths)
+{
+	int	i;
+	char	*path;
+	char	*aux;
+
+	aux = ft_strjoin("/", cmd);
+	if (!aux)
+		return (NULL);
+	i = -1;
+	while (paths[++i])
+	{
+		path = ft_strjoin(paths[i], aux);
+		if (!path)
+		{
+			free(aux);
+			return (NULL);
+		}
+		if (access(path, X_OK) == 0)
+		{
+			free(aux);
+			return (path);
+		}
+		free(path);
+	}
+	free(aux);
+	return (NULL);
+}
+
 char    *pathfinder(char *cmd, char **envp)
 {
         char    *abso_path;
