@@ -44,6 +44,16 @@ static int	all_commands(t_pipex **pipex_buffer, int size_cmds, char **cmds, char
 	return (0);
 }
 
+//DELETE
+void print_cmds(t_cmd *cmds, int cmds_len) {
+  for (int i = 0; i < cmds_len; i++) {
+    printf("cmd %d: %s\n", i, cmds[i].path);
+    for (int j = 0; cmds[i].args[j] != NULL; j++) {
+      printf("  arg %d: %s\n", j, cmds[i].args[j]);
+    }
+  }
+}
+
 int	main(int argc, char **argv, char **envp)
 {
 	t_pipex	*pipex;
@@ -53,5 +63,6 @@ int	main(int argc, char **argv, char **envp)
 	pipex = NULL;
 	if (all_commands(&pipex, argc - 3, argv + 2, envp) != 0)
 		return (write(2, ".ERROR: Failed To Parse Arguments.\n", 35));
+	printer(pipex, argc - 3);
 	return (0);
 }
