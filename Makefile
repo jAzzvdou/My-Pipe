@@ -2,7 +2,6 @@ NAME	=	pipex
 
 SRCS	=	main.c       \
 		pathfinder.c \
-		pipex.h      \
 		spliter.c    \
 		utils.c	     \
 		utils2.c

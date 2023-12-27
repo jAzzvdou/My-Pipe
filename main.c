@@ -1,5 +1,15 @@
 #include "pipex.h"
 
+static void	cleaner_matrix(char **matrix)
+{
+	int	i;
+
+	i = -1;
+	while (matrix[++i] != NULL)
+		free(matrix[i]);
+	free(matrix);
+}
+
 static void	cleaner_cmds(t_pipex *cmds, int size_cmds)
 {
 	int	i;
@@ -45,11 +55,11 @@ static int	all_commands(t_pipex **pipex_buffer, int size_cmds, char **cmds, char
 }
 
 //DELETE
-void print_cmds(t_cmd *cmds, int cmds_len) {
+void printer(t_pipex *cmds, int cmds_len) {
   for (int i = 0; i < cmds_len; i++) {
     printf("cmd %d: %s\n", i, cmds[i].path);
-    for (int j = 0; cmds[i].args[j] != NULL; j++) {
-      printf("  arg %d: %s\n", j, cmds[i].args[j]);
+    for (int j = 0; cmds[i].cmd_args[j] != NULL; j++) {
+      printf("  arg %d: %s\n", j, cmds[i].cmd_args[j]);
     }
   }
 }
