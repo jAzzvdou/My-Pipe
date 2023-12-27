@@ -1,5 +1,18 @@
 #include "pipex.h"
 
+void	cleaner_cmds(t_pipex *cmds, int size_cmds)
+{
+	int	i;
+
+	i = -1;
+	while (i < size_cmds)
+	{
+		free(cmds[i].path);
+		cleaner_matrix(cmds[i].cmd_args);
+	}
+	free(cmds);
+}
+
 int	single_command(t_pipex *pipex, char *cmd, char **envp)
 {
 	pipex->cmd_args = spliter(cmd, ' ');
