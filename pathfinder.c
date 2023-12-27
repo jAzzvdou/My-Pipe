@@ -1,6 +1,6 @@
 #include "pipex.h"
 
-char	*absolute_path(char *cmd)
+static char	*absolute_path(char *cmd)
 {
 	if (cmd[0] == '/' || cmd[0] == '.')
 	{
@@ -12,7 +12,7 @@ char	*absolute_path(char *cmd)
 	return (NULL);
 }
 
-char	*env_path(char **envp)
+static char	*env_path(char **envp)
 {
 	int	i;
 	char	**paths;
@@ -37,7 +37,7 @@ char	*env_path(char **envp)
 	return (paths);
 }
 
-char	*command_path(char *cmd, char **paths)
+static char	*command_path(char *cmd, char **paths)
 {
 	int	i;
 	char	*path;

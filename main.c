@@ -1,6 +1,6 @@
 #include "pipex.h"
 
-void	cleaner_cmds(t_pipex *cmds, int size_cmds)
+static void	cleaner_cmds(t_pipex *cmds, int size_cmds)
 {
 	int	i;
 
@@ -13,7 +13,7 @@ void	cleaner_cmds(t_pipex *cmds, int size_cmds)
 	free(cmds);
 }
 
-int	single_command(t_pipex *pipex, char *cmd, char **envp)
+static int	single_command(t_pipex *pipex, char *cmd, char **envp)
 {
 	pipex->cmd_args = spliter(cmd, ' ');
 	if (!pipex->cmd_args)
@@ -24,7 +24,7 @@ int	single_command(t_pipex *pipex, char *cmd, char **envp)
 	return (0);
 }
 
-int	all_commands(t_pipex **pipex_buffer, int size_cmds, char **cmds, char **envp)
+static int	all_commands(t_pipex **pipex_buffer, int size_cmds, char **cmds, char **envp)
 {
 	int	i;
 
