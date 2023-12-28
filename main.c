@@ -1,6 +1,6 @@
 #include "pipex.h"
 
-static void	cleaner_matrix(char **matrix)
+void	cleaner_matrix(char **matrix)
 {
 	int	i;
 

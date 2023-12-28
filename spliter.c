@@ -7,11 +7,11 @@ static size_t	sub_str(char const *s, char c)
 	length = 0;
 	while (*s)
 	{
-		if (*s == ''')
-			while (*s != ''')
+		if (*s == '\'')
+			while (*s != '\'')
 				s++;
-		else if (*s == '"')
-			while (*s != '"')
+		else if (*s == '\"')
+			while (*s != '\"')
 				s++;
 		else
 		{

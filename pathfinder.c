@@ -12,7 +12,7 @@ static char	*absolute_path(char *cmd)
 	return (NULL);
 }
 
-static char	*env_path(char **envp)
+static char	**env_path(char **envp)
 {
 	int	i;
 	char	**paths;
@@ -76,7 +76,7 @@ char    *pathfinder(char *cmd, char **envp)
         if (abso_path)
                 return (abso_path);
         paths = env_path(envp);
-        if (!path)
+        if (!paths)
                 return (NULL);
         cmd_path = command_path(cmd, paths);
         cleaner_matrix(paths);
