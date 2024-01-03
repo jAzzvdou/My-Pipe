@@ -1,34 +1,41 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   spliter.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/02 13:06:10 by jazevedo          #+#    #+#             */
+/*   Updated: 2024/01/03 17:17:34 by jazevedo         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "pipex.h"
 
-static size_t	sub_str(char const *s, char c)
+static int	count_words(char *cmd)
 {
-	size_t	length;
+	int	i;
+	int	words;
 
-	length = 0;
-	while (*s)
+	i = 0;
+	words = 0;
+	while (cmd[i])
 	{
-		if (*s == '\'')
-			while (*s != '\'')
-				s++;
-		else if (*s == '\"')
-			while (*s != '\"')
-				s++;
-		else
-		{
-			if (*s != c)
-				length++;
-			while (*s && *s != c)
-				s++;
-			while (*s && *s == c)
-				s++;
-		}
+		if (cmd[i] != ' ')
+			words++;
+		if ((cmd[i] == '\'' || cmd[i] == '\"') && verify_quote(cmd, i))
+			i += is_quote(cmd, i);
+		while (cmd[i] && cmd[i] != ' ')
+			cmd++;
+		while (cmd[i] && cmd[i] == ' ')
+			cmd++;
 	}
-	return (length);
+	return (words);
 }
 
 static void	free_split(char **final)
 {
-	size_t	i;
+	int	i;
 
 	i = -1;
 	while (final[++i])
@@ -36,31 +43,50 @@ static void	free_split(char **final)
 	free(final);
 }
 
-char	**spliter(char const *s, char c)
+char	**final_split(char **final, char *cmd, int words)
 {
-	size_t	i;
-	size_t	words;
-	size_t	wordsize;
+	int	counter;
+	int	i;
+
+	counter = -1;
+	while (++counter < words)
+	{
+		while (*cmd == ' ')
+			cmd++;
+		i = 0;
+		if ((cmd[i] == '\'' || cmd[i] == '\"') && verify_quote(cmd, i))
+			i += is_quote(cmd, i);
+		while (cmd[i] && cmd[i] != ' ')
+			i++;
+		final[counter] = ft_substr(cmd, 0, i);
+		if (!final[counter])
+			return (free_split(final), NULL);
+		cmd += i;
+	}
+	return (final[counter] = NULL, final);
+}
+
+char	**spliter(char *cmd)
+{
+	int	words;
 	char	**final;
 
-	if (s == NULL)
+	if (!cmd)
 		return (NULL);
-	words = sub_str(s, c);
-	final = malloc(sizeof(char *) * (words + 1));
-	if (final == NULL)
+	words = count_words(cmd);
+	final = (char **)malloc(sizeof(char *) * (words + 1));
+	if (!final)
 		return (NULL);
-	i = -1;
-	while (++i < words)
-	{
-		while (*s == c)
-			s++;
-		wordsize = 0;
-		while (s[wordsize] && s[wordsize] != c)
-			wordsize++;
-		final[i] = ft_substr(s, 0, wordsize);
-		if (final[i] == NULL)
-			return (free_split(final), NULL);
-		s += wordsize;
-	}
-	return (final[i] = NULL, final);
+	return (final_split(final, cmd, words));
 }
+/*
+#include <stdio.h>
+int	main(void)
+{
+	char	**cmd = spliter("grep 'a b c");
+	int	i = -1;
+	while (cmd[++i])
+		printf(".%s.\n", cmd[i]);
+	free_split(cmd);
+	return (0);
+}*/
