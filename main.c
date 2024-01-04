@@ -6,7 +6,7 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 15:35:24 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/01/04 18:14:12 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/01/04 18:38:18 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static int	start_pipex(t_pipex *pipex, int argc, char **argv, char **envp)
 	pipex->cmdargs = NULL;
 	pipex->envi = envp;
 	pipex->fd[0] = open(argv[1], O_RDONLY);
-	pipex->fd[1] = open(argv[argc - 1], O_RDWR | O_CREAT | O_TRUNC, 00700);
+	pipex->fd[1] = open(argv[argc - 1], O_CREAT | O_RDWR | O_TRUNC, 00700);
 	if (pipex->fd[0] < 0 || pipex->fd[1] < 0)
 		return (1);
 	return (0);
