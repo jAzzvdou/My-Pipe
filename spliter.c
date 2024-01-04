@@ -6,7 +6,7 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 13:06:10 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/01/03 17:17:34 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/01/04 02:04:39 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static void	free_split(char **final)
 	free(final);
 }
 
-char	**final_split(char **final, char *cmd, int words)
+static char	**final_split(char **final, char *cmd, int words)
 {
 	int	counter;
 	int	i;
@@ -79,14 +79,3 @@ char	**spliter(char *cmd)
 		return (NULL);
 	return (final_split(final, cmd, words));
 }
-/*
-#include <stdio.h>
-int	main(void)
-{
-	char	**cmd = spliter("grep 'a b c");
-	int	i = -1;
-	while (cmd[++i])
-		printf(".%s.\n", cmd[i]);
-	free_split(cmd);
-	return (0);
-}*/
