@@ -6,7 +6,7 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 17:21:09 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/01/04 02:23:19 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/01/04 16:56:28 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,20 @@
 
 typedef struct s_pipex
 {
-	int	infile;
-	int	outtfile;
+	pid_t	pid;
+	int	pipe[2];
+	int	fd[2];
 	char	*path;
 	char	**cmdargs;
+	char	**envi;
 }	t_pipex;
 
 //----------PIPEX----------//
 int	main(int argc, char **argv, char **envp);
 char	**spliter(char *cmd);
-char    *pathfinder(char *cmd, char **envp);
+char    *pathfinder(t_pipex *pipex);
 
-//----------CLEANERS----------//
-void	cleaner(t_pipex *pipex, int cmds);
+//----------CLEANER----------//
 void	cleaner_matrix(char **matrix);
 
 //----------QUOTE----------//
@@ -39,13 +40,6 @@ int	verify_quote(char *cmd, int i);
 int	is_quote(char *cmd, int i);
 
 //----------UTILS----------//
-size_t	ft_strlen(const char *str);
-int	ft_strncmp(const char *s1, const char *s2, size_t n);
-char	*ft_strchr(const char *s, int c);
-void	*ft_memset(void *s, int c, size_t n);
-char	*ft_strdup(const char *s);
-char	*ft_substr(char const *s, unsigned int start, size_t len);
-char	**ft_split(char const *s, char c);
-char	*ft_strjoin(char const *s1, char const *s2);
+
 
 #endif //PIPEX
