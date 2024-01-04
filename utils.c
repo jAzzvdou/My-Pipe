@@ -6,7 +6,7 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 17:10:53 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/01/03 17:15:48 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/01/04 17:26:10 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,18 @@ size_t	ft_strlen(const char *str)
 	return (i);
 }
 
+char	*ft_strchr(const char *s, int c)
+{
+	char	ch;
+
+	ch = c;
+	while (*s && *s != ch)
+		s++;
+	if (*s == ch)
+		return ((char *)s);
+	return (NULL);
+}
+
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
 	size_t	i;
@@ -34,16 +46,6 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 		if (s1[i] != s2[i])
 			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
-}
-
-void	*ft_memset(void *s, int c, size_t n)
-{
-	char	*zero_s;
-
-	zero_s = s;
-	while (n--)
-		zero_s[n] = c;
-	return ((void *)zero_s);
 }
 
 char	*ft_strdup(const char *s)

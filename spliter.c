@@ -6,7 +6,7 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 13:06:10 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/01/04 02:04:39 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/01/04 17:31:49 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static char	**final_split(char **final, char *cmd, int words)
 
 char	**spliter(char *cmd)
 {
-	int	words;
+	int		words;
 	char	**final;
 
 	if (!cmd)

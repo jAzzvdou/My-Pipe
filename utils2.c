@@ -6,7 +6,7 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 17:17:56 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/01/04 02:22:59 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/01/04 17:26:32 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,16 +83,4 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		new_s[i++] = *s2++;
 	new_s[i] = '\0';
 	return (new_s);
-}
-
-char	*ft_strchr(const char *s, int c)
-{
-	char	ch;
-
-	ch = c;
-	while (*s && *s != ch)
-		s++;
-	if (*s == ch)
-		return ((char *)s);
-	return (NULL);
 }
