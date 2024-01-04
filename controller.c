@@ -6,7 +6,7 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 17:19:47 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/01/04 18:33:46 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/01/04 18:50:37 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ static void	executer(t_pipex *pipex, char *cmd)
 		cleaner_matrix(pipex->cmdargs);
 		exit(1);
 	}
+	write(1, ".zero.\n", 7); //PROBLEMA NO EXECVE
 	execve(pipex->path, pipex->cmdargs, pipex->envi);
 	write(2, ".ERROR: Command Not Found.\n", 27);
 	exit(1);
