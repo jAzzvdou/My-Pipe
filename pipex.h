@@ -6,16 +6,18 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 17:21:09 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/01/04 17:34:15 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/01/04 18:33:07 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PIPEX_H
 # define PIPEX_H
 
-# include <unistd.h>
-# include <stdlib.h>
-# include <fcntl.h>
+# include <unistd.h> //WRITE
+# include <stdlib.h> //MALLOC, NULL
+# include <fcntl.h> //OPEN
+# include <sys/wait.h> //WAITPID
+# include <stdio.h> //PERROR
 
 typedef struct s_pipex
 {

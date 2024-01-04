@@ -6,7 +6,7 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 17:19:47 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/01/04 17:33:09 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/01/04 18:33:46 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,19 +29,19 @@ static void	closer(t_pipex *pipex, int option1, int option2)
 	close(pipex->pipe[option2]);
 }
 
-static void	executer(t_pipex *pipex, char *cmd);
+static void	executer(t_pipex *pipex, char *cmd)
 {
-	closer(&pipex, 0, 1);
+	closer(pipex, 0, 1);
 	pipex->cmdargs = spliter(cmd);
-	pipex->pathfinder(&pipex);
+	pipex->path = pathfinder(pipex);
 	if (access(pipex->path, F_OK | X_OK) != 0
 		&& ft_strchr(pipex->cmdargs[0], '/'))
 	{
-		perror(pipex->cmdargs[0]);
+		perror(".ERROR: Command Not Found.\n");
 		cleaner_matrix(pipex->cmdargs);
 		exit(1);
 	}
-	execve(pipex->path, pipex->cmdargs, envp);
+	execve(pipex->path, pipex->cmdargs, pipex->envi);
 	write(2, ".ERROR: Command Not Found.\n", 27);
 	exit(1);
 }
@@ -51,9 +51,9 @@ static void	process_controller(t_pipex *pipex, char *cmd)
 	pipex->pid = fork();
 	pipe(pipex->pipe);
 	if (pipex->pid == 0)
-		executer(&pipex, cmd);
+		executer(pipex, cmd);
 	else
-		closer(&pipex, 1, 0);
+		closer(pipex, 1, 0);
 }
 
 void	cmd_controller(t_pipex *pipex, int cmds_size, char **cmds)
@@ -61,9 +61,9 @@ void	cmd_controller(t_pipex *pipex, int cmds_size, char **cmds)
 	int	i;
 
 	i = 1;
-	dup2(infile, 0);
+	dup2(pipex->fd[0], 0);
 	while (++i < cmds_size - 2)
-		process_controller(&pipex, cmds[i]);
-	executer(&pipex, cmds[i]);
+		process_controller(pipex, cmds[i]);
+	executer(pipex, cmds[i]);
 	waitpid(-1, NULL, 0);
 }
