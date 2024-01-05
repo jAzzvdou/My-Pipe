@@ -6,7 +6,7 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 17:19:47 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/01/05 16:40:29 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/01/05 17:10:03 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@ void	cmd_controller(t_pipex *pipex, int cmds_size, char **cmds)
 {
 	int	i;
 
-	i = 1;
 	dup2(pipex->fd[0], 0);
+	i = 1;
 	while (++i <= cmds_size - 2)
 	{
 		if (i < cmds_size - 2)
