@@ -6,7 +6,7 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 17:21:09 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/01/04 18:33:07 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/01/05 16:54:00 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	cleaner_matrix(char **matrix);
 //----------QUOTE----------//
 int		verify_quote(char *cmd, int i);
 int		is_quote(char *cmd, int i);
+char	*remove_quote(char *trim, char quote);
 
 //----------UTILS----------//
 size_t	ft_strlen(const char *str);

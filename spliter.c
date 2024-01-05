@@ -6,7 +6,7 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 13:06:10 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/01/04 17:31:49 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/01/05 16:48:08 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,10 @@ static char	**final_split(char **final, char *cmd, int words)
 
 char	**spliter(char *cmd)
 {
+	int		i;
 	int		words;
 	char	**final;
+	char	**trim;
 
 	if (!cmd)
 		return (NULL);
@@ -77,5 +79,13 @@ char	**spliter(char *cmd)
 	final = (char **)malloc(sizeof(char *) * (words + 1));
 	if (!final)
 		return (NULL);
-	return (final_split(final, cmd, words));
+	trim = final_split(final, cmd, words);
+	i = -1;
+	while (trim[++i])
+	{
+		if ((trim[i][0] == '\'' || trim[i][0] == '\"')
+			&& verify_quote(trim[i], 0))
+			trim[i] = remove_quote(trim[i], trim[i][0]);
+	}
+	return (trim);
 }

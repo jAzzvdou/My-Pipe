@@ -6,7 +6,7 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 17:16:39 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/01/03 17:17:22 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/01/05 16:58:25 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,20 @@ int	verify_quote(char *cmd, int i)
 		if (cmd[i] == quote)
 			return (1);
 	return (0);
+}
+
+char	*remove_quote(char *trim, char quote)
+{
+	size_t	trim_size;
+	char	*s_quote;
+	char	*new;
+
+	s_quote[0] = quote;
+	while (*trim && ft_strchr(s_quote, *trim))
+		trim++;
+	trim_size = ft_strlen(trim) - 1;
+	while (trim[trim_size] && ft_strchr(s_quote, trim[trim_size]))
+		trim_size--;
+	new = ft_substr(trim, 0, trim_size + 1);
+	return (new);
 }
