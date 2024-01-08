@@ -6,7 +6,7 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 17:16:39 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/01/05 16:58:25 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/01/08 17:11:26 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	verify_quote(char *cmd, int i)
 char	*remove_quote(char *trim, char quote)
 {
 	size_t	trim_size;
-	char	*s_quote;
+	char	s_quote[1];
 	char	*new;
 
 	s_quote[0] = quote;

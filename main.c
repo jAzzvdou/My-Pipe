@@ -6,7 +6,7 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 15:35:24 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/01/04 18:38:18 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/01/08 16:50:09 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,6 @@ int	main(int argc, char **argv, char **envp)
 		return (write(2, ".ERROR: Invalid Number Of Arguments.\n", 37));
 	if (start_pipex(&pipex, argc, argv, envp) != 0)
 		return (write(2, ".ERROR: start_pipex.\n", 20));
-	cmd_controller(&pipex, argc, argv);
+	cmd_controller(&pipex, argc, argv, 1);
 	return (0);
 }

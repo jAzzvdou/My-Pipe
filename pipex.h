@@ -6,7 +6,7 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 17:21:09 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/01/05 16:54:00 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/01/08 16:52:45 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ typedef struct s_pipex
 
 //----------PIPEX----------//
 int		main(int argc, char **argv, char **envp);
-void	cmd_controller(t_pipex *pipex, int cmds_size, char **cmds);
+void	cmd_controller(t_pipex *pipex, int cmds_size, char **cmdsi, int i);
 char	**spliter(char *cmd);
 char	*pathfinder(t_pipex *pipex);
 
