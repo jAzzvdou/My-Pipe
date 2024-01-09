@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   pipex_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/03 17:21:09 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/01/09 13:19:31 by jazevedo         ###   ########.fr       */
+/*   Created: 2024/01/09 13:10:09 by jazevedo          #+#    #+#             */
+/*   Updated: 2024/01/09 13:21:19 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#ifndef PIPEX_BONUS_H
+# define PIPEX_BONUS_H
 
 # include <unistd.h> //WRITE, FORK, PIPE, EXECVE
 # include <stdlib.h> //MALLOC, NULL
@@ -34,6 +34,9 @@ void	cmd_controller(t_pipex *pipex, int cmds_size, char **cmds, int i);
 char	**spliter(char *cmd);
 char	*pathfinder(t_pipex *pipex);
 
+//----------BONUS----------//
+char	*get_next_line(int fd);
+
 //----------CLEANER----------//
 void	cleaner_matrix(char **matrix);
 
@@ -51,4 +54,4 @@ char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	**ft_split(char const *s, char c);
 
-#endif //PIPEX
+#endif //PIPEX_BONUS

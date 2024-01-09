@@ -6,11 +6,11 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 17:14:47 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/01/08 17:23:57 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/01/09 13:03:05 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "pipex_bonus.h"
 
 static void	heredoc(t_pipex *pipex, char *limiter, int argc, char **argv)
 {
@@ -18,13 +18,15 @@ static void	heredoc(t_pipex *pipex, char *limiter, int argc, char **argv)
 
 	while (ft_strncmp(str_input, limiter, ft_strlen(str_input)) != 0)
 	{
-		write(1, "> ", 2);
+		write(1, "heredoc> ", 9);
 		str_input = get_next_line(0);
 		write(pipex->fd[0], str_input, ft_strlen(str_input));
 		write(pipex->fd[0], "\n", 1);
 		free(str_input);
 	}
 	cmd_controller(pipex, argc, argv, 2);
+	if (unlink(".here_doc") != 0)
+		write(2, ".ERROR: Remove Heredoc.\n", 24);
 }
 
 static int	start_hd(t_pipex *pipex, int argc, char **argv, char **envp)
