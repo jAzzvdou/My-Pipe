@@ -6,7 +6,7 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 17:19:47 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/01/08 16:49:23 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/01/09 18:44:11 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,9 @@ static void	process_controller(t_pipex *pipex, char *cmd)
 
 void	cmd_controller(t_pipex *pipex, int cmds_size, char **cmds, int i)
 {
+	int	index;
+
+	index = i;
 	dup2(pipex->fd[0], 0);
 	while (++i <= cmds_size - 2)
 	{

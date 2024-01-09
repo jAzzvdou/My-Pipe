@@ -6,7 +6,7 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 17:14:47 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/01/09 13:39:34 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/01/09 18:40:01 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,23 @@
 
 static void	heredoc(t_pipex *pipex, char *limiter, int argc, char **argv)
 {
+	int		key;
 	char	*str_input;
+	char	*new_limiter;
 
-	while (ft_strncmp(str_input, limiter, ft_strlen(str_input)) != 0)
+	key = 1;
+	str_input = NULL;
+	new_limiter = ft_strjoin(limiter, "\n");
+	while (key
+		|| ft_strncmp(str_input, new_limiter, ft_strlen(str_input)) != 0)
 	{
+		key = 0;
 		write(1, "heredoc> ", 9);
 		str_input = get_next_line(STDIN_FILENO);
 		write(pipex->fd[0], str_input, ft_strlen(str_input));
-		write(pipex->fd[0], "\n", 1);
-		free(str_input);
 	}
+	free(str_input);
+	free(new_limiter);
 	cmd_controller(pipex, argc, argv, 2);
 	if (unlink(".here_doc") != 0)
 		write(2, ".ERROR: Remove Heredoc.\n", 24);
@@ -35,7 +42,7 @@ static int	start_hd(t_pipex *pipex, int argc, char **argv, char **envp)
 	pipex->cmdargs = NULL;
 	pipex->envi = envp;
 	pipex->fd[0] = open(".here_doc", O_CREAT | O_RDWR | O_TRUNC, 00700);
-	pipex->fd[1] = open(argv[argc - 1], O_CREAT | O_RDWR | O_APPEND);
+	pipex->fd[1] = open(argv[argc - 1], O_CREAT | O_RDWR | O_APPEND, 00700);
 	if (pipex->fd[0] < 0)
 		return (1);
 	return (0);
