@@ -6,14 +6,14 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 13:10:09 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/01/09 13:21:19 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/01/09 13:30:18 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PIPEX_BONUS_H
 # define PIPEX_BONUS_H
 
-# include <unistd.h> //WRITE, FORK, PIPE, EXECVE
+# include <unistd.h> //WRITE, UNLINK, FORK, PIPE, EXECVE
 # include <stdlib.h> //MALLOC, NULL
 # include <fcntl.h> //OPEN, CLOSE
 # include <sys/wait.h> //WAITPID
