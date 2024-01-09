@@ -6,7 +6,7 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 17:14:47 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/01/09 13:03:05 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/01/09 13:39:34 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	heredoc(t_pipex *pipex, char *limiter, int argc, char **argv)
 	while (ft_strncmp(str_input, limiter, ft_strlen(str_input)) != 0)
 	{
 		write(1, "heredoc> ", 9);
-		str_input = get_next_line(0);
+		str_input = get_next_line(STDIN_FILENO);
 		write(pipex->fd[0], str_input, ft_strlen(str_input));
 		write(pipex->fd[0], "\n", 1);
 		free(str_input);
