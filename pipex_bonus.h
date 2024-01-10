@@ -6,14 +6,14 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 13:10:09 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/01/09 13:30:18 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/01/10 00:50:26 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PIPEX_BONUS_H
 # define PIPEX_BONUS_H
 
-# include <unistd.h> //WRITE, UNLINK, FORK, PIPE, EXECVE
+# include <unistd.h> //WRITE, FORK, PIPE, EXECVE
 # include <stdlib.h> //MALLOC, NULL
 # include <fcntl.h> //OPEN, CLOSE
 # include <sys/wait.h> //WAITPID
@@ -24,6 +24,7 @@ typedef struct s_pipex
 	pid_t	pid;
 	int		pipe[2];
 	int		fd[2];
+	int		ac;
 	char	*path;
 	char	**cmdargs;
 	char	**envi;

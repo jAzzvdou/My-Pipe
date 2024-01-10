@@ -6,7 +6,7 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 17:19:47 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/01/09 18:44:11 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/01/10 00:12:25 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,44 +31,37 @@ static void	closer(t_pipex *pipex, int option1, int option2)
 
 static void	executer(t_pipex *pipex, char *cmd)
 {
-	pipex->cmdargs = spliter(cmd);
-	pipex->path = pathfinder(pipex);
-	if (access(pipex->path, F_OK | X_OK) != 0
-		&& ft_strchr(pipex->cmdargs[0], '/'))
-	{
-		perror(".ERROR: Command Not Found.\n");
-		cleaner_matrix(pipex->cmdargs);
-		exit(1);
-	}
-	execve(pipex->path, pipex->cmdargs, pipex->envi);
-	write(2, ".ERROR: Command Not Found.\n", 27);
-	cleaner_matrix(pipex->cmdargs);
-	exit(1);
-}
-
-static void	process_controller(t_pipex *pipex, char *cmd)
-{
-	pipe(pipex->pipe);
 	pipex->pid = fork();
 	if (pipex->pid == 0)
 	{
 		closer(pipex, 0, 1);
-		executer(pipex, cmd);
+		pipex->cmdargs = spliter(cmd);
+		pipex->path = pathfinder(pipex);
+		if (access(pipex->path, F_OK | X_OK) != 0
+			&& ft_strchr(pipex->cmdargs[0], '/'))
+		{
+			perror(".ERROR: Command Not Found.\n");
+			cleaner_matrix(pipex->cmdargs);
+			exit(1);
+		}
+		execve(pipex->path, pipex->cmdargs, pipex->envi);
+		write(2, ".ERROR: Command Not Found.\n", 27);
+		cleaner_matrix(pipex->cmdargs);
+		exit(1);
 	}
-	else
-		closer(pipex, 1, 0);
+	closer(pipex, 1, 0);
 }
 
 void	cmd_controller(t_pipex *pipex, int cmds_size, char **cmds, int i)
 {
-	int	index;
-
-	index = i;
 	dup2(pipex->fd[0], 0);
 	while (++i <= cmds_size - 2)
 	{
 		if (i < cmds_size - 2)
-			process_controller(pipex, cmds[i]);
+		{
+			pipe(pipex->pipe);
+			executer(pipex, cmds[i]);
+		}
 		else
 		{
 			close(pipex->fd[0]);

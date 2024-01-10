@@ -6,44 +6,40 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 17:14:47 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/01/09 18:40:01 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/01/10 00:59:52 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex_bonus.h"
 
-static void	heredoc(t_pipex *pipex, char *limiter, int argc, char **argv)
+void	heredoc(t_pipex *pipex, int hd, char *limiter, char **argv)
 {
-	int		key;
 	char	*str_input;
 	char	*new_limiter;
 
-	key = 1;
-	str_input = NULL;
 	new_limiter = ft_strjoin(limiter, "\n");
-	while (key
-		|| ft_strncmp(str_input, new_limiter, ft_strlen(str_input)) != 0)
+	while (1)
 	{
-		key = 0;
-		write(1, "heredoc> ", 9);
+		write(1, "> ", 2);
 		str_input = get_next_line(STDIN_FILENO);
-		write(pipex->fd[0], str_input, ft_strlen(str_input));
+		if (ft_strncmp(str_input, new_limiter, ft_strlen(str_input)) == 0)
+			break ;
+		write(hd, str_input, ft_strlen(str_input));
 	}
+	close(hd);
 	free(str_input);
 	free(new_limiter);
-	cmd_controller(pipex, argc, argv, 2);
-	if (unlink(".here_doc") != 0)
-		write(2, ".ERROR: Remove Heredoc.\n", 24);
+	cmd_controller(pipex, pipex->ac, argv, 2);
 }
 
 static int	start_hd(t_pipex *pipex, int argc, char **argv, char **envp)
 {
 	pipex->path = NULL;
 	pipex->cmdargs = NULL;
+	pipex->ac = argc;
 	pipex->envi = envp;
-	pipex->fd[0] = open(".here_doc", O_CREAT | O_RDWR | O_TRUNC, 00700);
 	pipex->fd[1] = open(argv[argc - 1], O_CREAT | O_RDWR | O_APPEND, 00700);
-	if (pipex->fd[0] < 0)
+	if (pipex->fd[0] < 0 || pipex->fd[1] < 0)
 		return (1);
 	return (0);
 }
@@ -63,6 +59,7 @@ static int	start_pipex(t_pipex *pipex, int argc, char **argv, char **envp)
 int	main(int argc, char **argv, char **envp)
 {
 	t_pipex	pipex;
+	int		hd[2];
 
 	if (argc < 5)
 		return (write(2, ".ERROR: Invalid Number Of Arguments.\n", 37));
@@ -72,7 +69,9 @@ int	main(int argc, char **argv, char **envp)
 			return (write(2, ".ERROR: argc != 6.\n", 19));
 		if (start_hd(&pipex, argc, argv, envp) != 0)
 			return (write(2, ".ERROR: start_heredoc.\n", 22));
-		heredoc(&pipex, argv[2], argc, argv);
+		pipe(hd);
+		pipex.fd[0] = hd[0];
+		heredoc(&pipex, hd[1], argv[2], argv);
 	}
 	else
 	{

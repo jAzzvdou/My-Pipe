@@ -8,7 +8,14 @@ SRCS	=	main.c       \
 		utils.c      \
 		utils2.c
 
-SRCS_BONUS	=	main_bonus.c	
+SRCS_BONUS	=	main_bonus.c          \
+			get_next_line_bonus.c \
+			controller.c          \
+			spliter.c             \
+			quote.c               \
+			pathfinder.c          \
+			utils.c               \
+			utils2.c
 
 OBJS	=	$(SRCS:.c=.o)
 
@@ -23,7 +30,7 @@ RM	=	rm -rf
 all: $(NAME)
 
 $(NAME): $(OBJS)
-		ar rcs $(NAME) $(OBJS)
+		$(CC) -o $(NAME) $(OBJS)
 
 .c.o:
 		$(CC) $(CFLAGS) -c $<
@@ -36,7 +43,7 @@ fclean: clean
 
 re: fclean all
 
-bonus: $(OBJS) $(OBJS_BONUS)
-		ar rcs $(NAME) $(OBJS) $(OBJS_BONUS)
+bonus: $(OBJS_BONUS)
+		$(CC) -o $(NAME) $(OBJS_BONUS)
 
 .PHONY: all clean fclean re bonus
