@@ -6,7 +6,7 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 17:14:47 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/01/10 00:59:52 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/01/10 14:51:03 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	heredoc(t_pipex *pipex, int hd, char *limiter, char **argv)
 		if (ft_strncmp(str_input, new_limiter, ft_strlen(str_input)) == 0)
 			break ;
 		write(hd, str_input, ft_strlen(str_input));
+		free(str_input);
 	}
 	close(hd);
 	free(str_input);
