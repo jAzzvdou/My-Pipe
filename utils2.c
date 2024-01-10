@@ -6,7 +6,7 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 17:17:56 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/01/09 14:12:57 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/01/10 13:17:17 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,3 +86,4 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	new_s[i] = '\0';
 	return (new_s);
 }
+.
