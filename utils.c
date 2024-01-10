@@ -6,7 +6,7 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 17:10:53 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/01/10 13:17:06 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/01/10 13:18:29 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,4 +87,3 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	new_s[i] = '\0';
 	return (new_s);
 }
-.
