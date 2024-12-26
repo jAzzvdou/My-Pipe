@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   utils2.c                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/03 17:17:56 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/01/10 13:18:38 by jazevedo         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "pipex.h"
 
 static size_t	sub_str(char const *s, char c)
@@ -39,7 +27,7 @@ static void	free_split(char **final)
 	free(final);
 }
 
-char	**ft_split(char const *s, char c)
+char	**my_split(char const *s, char c)
 {
 	size_t	i;
 	size_t	words;
@@ -60,7 +48,7 @@ char	**ft_split(char const *s, char c)
 		wordsize = 0;
 		while (s[wordsize] && s[wordsize] != c)
 			wordsize++;
-		final[i] = ft_substr(s, 0, wordsize);
+		final[i] = my_substr(s, 0, wordsize);
 		if (final[i] == NULL)
 			return (free_split(final), NULL);
 		s += wordsize;
@@ -68,14 +56,14 @@ char	**ft_split(char const *s, char c)
 	return (final[i] = NULL, final);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*my_strjoin(char const *s1, char const *s2)
 {
 	size_t	i;
 	char	*new_s;
 
 	if (!s1 && !s2)
 		return (NULL);
-	new_s = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	new_s = malloc(sizeof(char) * (my_strlen(s1) + my_strlen(s2) + 1));
 	if (new_s == NULL)
 		return (NULL);
 	i = 0;

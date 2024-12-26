@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   quote.c                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/03 17:16:39 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/01/08 17:11:26 by jazevedo         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "pipex.h"
 
 int	is_quote(char *cmd, int i)
@@ -47,11 +35,11 @@ char	*remove_quote(char *trim, char quote)
 	char	*new;
 
 	s_quote[0] = quote;
-	while (*trim && ft_strchr(s_quote, *trim))
+	while (*trim && my_strchr(s_quote, *trim))
 		trim++;
-	trim_size = ft_strlen(trim) - 1;
-	while (trim[trim_size] && ft_strchr(s_quote, trim[trim_size]))
+	trim_size = my_strlen(trim) - 1;
+	while (trim[trim_size] && my_strchr(s_quote, trim[trim_size]))
 		trim_size--;
-	new = ft_substr(trim, 0, trim_size + 1);
+	new = my_substr(trim, 0, trim_size + 1);
 	return (new);
 }

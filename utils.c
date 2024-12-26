@@ -1,18 +1,6 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/03 17:10:53 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/01/10 13:18:29 by jazevedo         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "pipex.h"
 
-size_t	ft_strlen(const char *str)
+size_t	my_strlen(const char *str)
 {
 	size_t	i;
 
@@ -24,7 +12,7 @@ size_t	ft_strlen(const char *str)
 	return (i);
 }
 
-char	*ft_strchr(const char *s, int c)
+char	*my_strchr(const char *s, int c)
 {
 	char	ch;
 
@@ -36,7 +24,7 @@ char	*ft_strchr(const char *s, int c)
 	return (NULL);
 }
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+int	my_strncmp(const char *s1, const char *s2, size_t n)
 {
 	size_t	i;
 
@@ -50,12 +38,12 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }
 
-char	*ft_strdup(const char *s)
+char	*my_strdup(const char *s)
 {
 	int		i;
 	char	*final;
 
-	final = (char *)malloc(sizeof(char) * (ft_strlen(s) + 1));
+	final = (char *)malloc(sizeof(char) * (my_strlen(s) + 1));
 	if (final == NULL)
 		return (NULL);
 	i = -1;
@@ -65,15 +53,15 @@ char	*ft_strdup(const char *s)
 	return (final);
 }
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*my_substr(char const *s, unsigned int start, size_t len)
 {
 	size_t	i;
 	size_t	s_size;
 	char	*new_s;
 
-	s_size = ft_strlen(s);
+	s_size = my_strlen(s);
 	if ((size_t)start > s_size)
-		return (ft_strdup(""));
+		return (my_strdup(""));
 	s += start;
 	s_size -= start;
 	if (s_size > len)

@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/03 17:21:09 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/01/09 13:19:31 by jazevedo         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #ifndef PIPEX_H
 # define PIPEX_H
 
@@ -43,12 +31,12 @@ int		is_quote(char *cmd, int i);
 char	*remove_quote(char *trim, char quote);
 
 //----------UTILS----------//
-size_t	ft_strlen(const char *str);
-char	*ft_strchr(const char *s, int c);
-int		ft_strncmp(const char *s1, const char *s2, size_t n);
-char	*ft_strdup(const char *s);
-char	*ft_strjoin(char const *s1, char const *s2);
-char	*ft_substr(char const *s, unsigned int start, size_t len);
-char	**ft_split(char const *s, char c);
+size_t	my_strlen(const char *str);
+char	*my_strchr(const char *s, int c);
+int		my_strncmp(const char *s1, const char *s2, size_t n);
+char	*my_strdup(const char *s);
+char	*my_strjoin(char const *s1, char const *s2);
+char	*my_substr(char const *s, unsigned int start, size_t len);
+char	**my_split(char const *s, char c);
 
 #endif //PIPEX

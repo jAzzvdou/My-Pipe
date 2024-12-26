@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   spliter.c                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/02 13:06:10 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/01/05 16:48:08 by jazevedo         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "pipex.h"
 
 static int	count_words(char *cmd)
@@ -58,7 +46,7 @@ static char	**final_split(char **final, char *cmd, int words)
 			i += is_quote(cmd, i);
 		while (cmd[i] && cmd[i] != ' ')
 			i++;
-		final[counter] = ft_substr(cmd, 0, i);
+		final[counter] = my_substr(cmd, 0, i);
 		if (!final[counter])
 			return (free_split(final), NULL);
 		cmd += i;

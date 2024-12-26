@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main_bonus.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/08 17:14:47 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/01/10 14:51:03 by jazevedo         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "pipex_bonus.h"
 
 void	heredoc(t_pipex *pipex, int hd, char *limiter, char **argv)
@@ -17,14 +5,14 @@ void	heredoc(t_pipex *pipex, int hd, char *limiter, char **argv)
 	char	*str_input;
 	char	*new_limiter;
 
-	new_limiter = ft_strjoin(limiter, "\n");
+	new_limiter = my_strjoin(limiter, "\n");
 	while (1)
 	{
 		write(1, "> ", 2);
 		str_input = get_next_line(STDIN_FILENO);
-		if (ft_strncmp(str_input, new_limiter, ft_strlen(str_input)) == 0)
+		if (my_strncmp(str_input, new_limiter, my_strlen(str_input)) == 0)
 			break ;
-		write(hd, str_input, ft_strlen(str_input));
+		write(hd, str_input, my_strlen(str_input));
 		free(str_input);
 	}
 	close(hd);
@@ -64,7 +52,7 @@ int	main(int argc, char **argv, char **envp)
 
 	if (argc < 5)
 		return (write(2, ".ERROR: Invalid Number Of Arguments.\n", 37));
-	if (ft_strncmp(argv[1], "here_doc", ft_strlen("here_doc")) == 0)
+	if (my_strncmp(argv[1], "here_doc", my_strlen("here_doc")) == 0)
 	{
 		if (argc < 6)
 			return (write(2, ".ERROR: argc != 6.\n", 19));

@@ -1,22 +1,10 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/09 13:25:21 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/01/09 13:26:47 by jazevedo         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "pipex_bonus.h"
 
 char	*free_function(char *wardrobe, char *buffer)
 {
 	char	*temp;
 
-	temp = ft_strjoin(wardrobe, buffer);
+	temp = my_strjoin(wardrobe, buffer);
 	free(wardrobe);
 	return (temp);
 }
@@ -60,7 +48,7 @@ char	*remover(char *wardrobe)
 		free(wardrobe);
 		return (NULL);
 	}
-	new_wardrobe = ft_strdup(wardrobe + end);
+	new_wardrobe = my_strdup(wardrobe + end);
 	free(wardrobe);
 	return (new_wardrobe);
 }
@@ -76,7 +64,7 @@ char	*get_next_line(int fd)
 	buffer = malloc(sizeof(char) * (1 + 1));
 	if (!buffer)
 		return (NULL);
-	while (bytes > 0 && (!wardrobe || !ft_strchr(wardrobe, '\n')))
+	while (bytes > 0 && (!wardrobe || !my_strchr(wardrobe, '\n')))
 	{
 		bytes = read(fd, buffer, 1);
 		if (bytes == -1)

@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   controller.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/04 17:19:47 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/01/10 00:12:25 by jazevedo         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "pipex.h"
 
 void	cleaner_matrix(char **matrix)
@@ -38,7 +26,7 @@ static void	executer(t_pipex *pipex, char *cmd)
 		pipex->cmdargs = spliter(cmd);
 		pipex->path = pathfinder(pipex);
 		if (access(pipex->path, F_OK | X_OK) != 0
-			&& ft_strchr(pipex->cmdargs[0], '/'))
+			&& my_strchr(pipex->cmdargs[0], '/'))
 		{
 			perror(".ERROR: Command Not Found.\n");
 			cleaner_matrix(pipex->cmdargs);
